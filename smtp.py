@@ -4,7 +4,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 
-# from django.template import Context, Template
 from jinja2 import Template
 import logging
 
@@ -65,12 +64,8 @@ class SMTP:
         self.message = message
 
     def render(self, context):
-        # content = Context(context)
-        # subject = Template(self.subject).render(content)
-        # body = Template(self.content).render(content)
-
         subject = Template(self.subject).render(context)
-        body = Template(self.subject).render(context)
+        body = Template(self.content).render(context)
 
         return body, subject
 
